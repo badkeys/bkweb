@@ -1,0 +1,20 @@
+<h3>keypair / Gitkraken vulnerability (CVE-2021-41117)</h3>
+
+<p>In 2021 it was discovered that a Javascript package called "keypair" created two bugs
+that led to a weak random number generator. A check for the presence of the Javascript
+random function always failed and a fallback random number generator was used. The
+fallback had a string conversion bug that led to limited random inputs (effectively the
+values 0-9 per byte, with 0 being the most likely value).</p>
+
+<p>The "keypair" package was used by the software Gitkraken to generate SSH keys used
+to access code hosting plattforms like Github.</p>
+
+<p>Due to the nature of this bug it is not possible to generate all keys produced
+by a vulnerable keypair version. The vulnerable library
+generates certain keys with different probabilities, our blocklist contains
+all keys created with a high probability.</p>
+
+<ul><li><a href="https://securitylab.github.com/advisories/GHSL-2021-1012-keypair/">Github Security Lab: Poor random number generation in keypair</a></li>
+<li><a href="https://github.com/juliangruber/keypair/security/advisories/GHSA-3f99-hvg4-qjwj">keypair advisory</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-41117">CVE-2021-41117</a></li>
+</ul>

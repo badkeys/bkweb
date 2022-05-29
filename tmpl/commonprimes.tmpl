@@ -1,0 +1,30 @@
+<h3>Common Prime factors</h3>
+
+<p>RSA public keys contain a modulus value N that is the product of two primes p and q.
+The security of RSA relies on the fact that p and q are secret and factoring N is a
+difficult problem and not computationally feasible. With knowledge of p and q
+the private key can be trivially calculated.</p>
+
+<p>When two RSA keys share one of their prime factors then this shared prime factor
+can be calculated efficiently with the greatest common divisor (GCD) algorithm.
+There also exists an efficient algorithm to search for common prime factors in a large
+set of keys.</p>
+
+<p>In 2012 two research teams independently applied this method to large collections of
+public keys. The analysis by one team indicated that these keys were mostly generated
+due to early boot time entropoy problems on Linux.</p>
+
+<p>In 2016 a research team published an updated analysis coming to the conclusion
+that this vulnerability remains widespread. Among TLS keys this vulnerability remains
+one of the most common flaws found in the wild.</p>
+
+<p>We detect affected keys by having a collection of known GCDs. By calculating a GCD
+against a product of all known GCDs of a fitting size we are able to efficiently
+detect affected keys. However we can not
+be sure that we cover all vulnerable GCDs.</p>
+
+<ul><li><a href="https://www.links.org/?p=143">2006 blog post by Ben Laurie contemplating a similar attack</a></li>
+<li><a href="https://factorable.net/">factorable.net</a> - from the authors of the "Mining Your Ps and Qs" research paper, with open source code of the attack</li>
+<li><a href="https://eprint.iacr.org/2012/064">Ron was wrong, Whit is right</a> - paper from other research team that independently discovered the same issues</li>
+<li><a href="https://www.cis.upenn.edu/~nadiah/papers/weak-keys/weak-keys.pdf">Weak Keys Remain Widespread in Network Devices</a> - 2016 research paper analyzing the patching</a></p>
+</ul>

@@ -1,0 +1,19 @@
+<h3>Consdierations about RSA Key Size</h3>
+
+<p>Historically RSA keys have been used with key sizes ranging from 512 bit to 4096 bit.</p>
+
+<p>Keys with 512 bit have first been practically broken in 1999, keys with 768 bit in 2010.
+It is believed that a powerful adversary can break 1024 bit, however this has not been
+publicly demonstrated.</p>
+
+<p>Modern recommendations are therefore to use a minimum key size of 2048 bit with RSA. Keys with 4096
+bit are also a common choice, keys larger than 4096 bit are often unsupported, as very large
+keys can lead to denial of service issues.</p>
+
+<p>Theoretically RSA allows keys of arbitrary size, including key sizes that are not aligned
+to byte sizes (e.g. 2049 bit keys, which is not a multiple of 8). Such unusual key sizes
+may <a href="https://mailarchive.ietf.org/arch/msg/tls/GNZrg_LnBMx2mKuOniwDTFdoIIc/">lead to compatibility issues</a>,
+as implementations may not have been tested with
+such keys.
+The majority of implementations default to key size choices that are multiples of 1024.
+It is recommended to use a common key size like 2048, 3072 or 4096 bit.</p>

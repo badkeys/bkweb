@@ -1,0 +1,37 @@
+<form action="/check/" method="POST">
+Enter Key:<br>
+<textarea name="inkey" rows="50" cols="50" id="keyfield" class="key"></textarea>
+<br>
+<input type="submit" value="OK">
+<button type="button" id="clear">Clear</button>
+<p>Supported are X.509 certificates (CRT), Certificate Signing Requests (CSR), PEM public and private keys according
+to PKCS #1 and PKCS #8, and SSH public keys. (While supported,
+uploading private keys is obviously
+discouraged for production keys.)</p>
+</form>
+</div>
+<div class="container">
+<h4>Fill with test data</h4>
+<!-- FIXME: make CSP compliant code
+https://developers.google.com/web/fundamentals/security/csp#inline-code-considered-harmful
+-->
+<button id='ok'>Normal RSA key</button>
+<button id='roca'>ROCA</button>
+<button id='fermat'>Fermat</button>
+<button id='debianweak'>Debian OpenSSL</button>
+<button id='pattern'>Many zeros</button>
+<button id='smallfactors'>Corrupt</button>
+<button id='2049'>Unusual size</button>
+<button id='512'>Small key</button>
+<button id='e3'>Exponent 3</button>
+<button id='ed25519'>Ed25519 RFC example</button>
+<br><br>
+<h4>Vulnerabilities</h4>
+<p>The badkeys service checks for these vulnerabilities:</p>
+<ul><li><a href="/docs/debian.html">Debian OpenSSL bug (CVE-2008-0166)</a></li>
+<li><a href="/docs/commonprimes.html">Common prime factor vulnerability ("Mining Your Ps and Qs", 2012)</a></li>
+<li><a href="/docs/roca.html">Return of Coopersmith's attack / ROCA (CVE-2017-15361)</a></li>
+<li><a href="/docs/keypair.html">keypair / Gitkraken bug (CVE-2021-41117)</a></li>
+<li><a href="/docs/fermat.html">Fermat Attack (CVE-2022-26320)</a></li>
+<li><a href="/docs/publicprivate.html">Various "Public Private Keys"</a></li>
+</ul>

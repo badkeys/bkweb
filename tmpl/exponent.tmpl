@@ -1,0 +1,33 @@
+<h3>Consdierations about RSA Exponents</h3>
+
+<p>RSA public keys consist of two values, the Modulus (N) and
+the Exponent (e).</p>
+
+<p>Most modern RSA implementations use a fixed exponent value of e = 65537.
+This is both a value that is efficient to calculate and that avoids
+some possible attacks.</p>
+
+<p>In theory RSA can be used with very small exponents, the smallest possible
+value is e = 3 and has been used in the past. However very small exponent
+values enable some attacks:</p>
+
+<ul><li>Various variations of Coppersmith's attack rely on small exponents,
+<a href="https://en.wikipedia.org/wiki/Coppersmith's_attack">Wikipedia has a good overview</a>.</li>
+<li><a href="https://mailarchive.ietf.org/arch/msg/openpgp/5rnE9ZRN1AokBVj3VqblGlP63QE/">Bleichenbacher's signature forgery attack</a> and
+variations like <a href="https://web.archive.org/web/20150727074315/http://www.intelsecurity.com/advanced-threat-research/berserk.html">BERserk</a>.</li>
+</ul>
+
+<p>These small exponent attacks rely on implementation flaws and can be avoided by
+carefully implementing RSA padding. However it is generally a good
+idea to systemically avoid implementation flaws if possible, therefore
+it is recommended to avoid small exponents.</p>
+
+<p>Another possible issue with exponents are small private exponents, which allow the
+<a href="https://link.springer.com/chapter/10.1007/3-540-48910-X_1">Boneh/Durfee attack</a>.
+Keys with a small private exponent would in almost all cases have a large
+public exponent.</p>
+
+<p>By choosing the default value of e = 65537 one avoids both small
+public exponent and small private exponent attacks. Also very generally
+standardizing cryptographic parameters is a good thing, therefore
+it is recommend that all RSA keys should use e = 65537.</p>

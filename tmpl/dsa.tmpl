@@ -1,0 +1,18 @@
+<h3>DSA</h3>
+<p>The Digital Signature Algorithm (DSA) is not recommended. While it is technically not broken,
+it suffers from two major issues that make it a risky choice.</p>
+
+<p>For a long time DSA was only standardized for keys with a maximum size of 1024 bit. This is
+believed to be breakable by a powerful adversary. While larger DSA keys with a size of 2048 bit
+are possible, they are often not supported.</p>
+
+<p>Another issue with DSA keys is that each key comes with a set of parameters. These parameters
+need to fulfil certain mathematical properties and there is no
+specified way how an implementation can check whether these parameters are good. There is no
+supported way to have known good and standardized parameters. Using malformed parameters can
+lead to surprising and unspecified behavior.</p>
+
+<p>Due to these issues we recommend avoiding the DSA algorithm.</p>
+
+<p>For more Info see 
+<a href="https://buttondown.email/cryptography-dispatches/archive/cryptography-dispatches-dsa-is-past-its-prime/">Cryptography Dispatches: DSA Is Past Its Prime</a>.</p>

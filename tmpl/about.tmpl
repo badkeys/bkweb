@@ -1,0 +1,15 @@
+<p>badkeys.info provides a service that allows checking cryptographic public keys
+for known vulnerabilities.</p>
+<p>It currently checks for the following vulnerabilities:</p>
+<ul><li><a href="/docs/debian.html">Debian OpenSSL bug (CVE-2008-0166)</a></li>
+<li><a href="/docs/commonprimes.html">Common prime factor vulnerability ("Mining Your Ps and Qs", 2012)</a></li>
+<li><a href="/docs/roca.html">Return of Coopersmith's attack / ROCA (CVE-2017-15361)</a></li>
+<li><a href="/docs/keypair.html">keypair / Gitkraken bug (CVE-2021-41117)</a></li>
+<li><a href="/docs/fermat.html">Fermat Attack (CVE-2022-26320)</a></li>
+<li><a href="/docs/publicprivate.html">Various "Public Private Keys"</a></li>
+</ul>
+<p>Currently most checked vulnerabilities affect RSA, support for
+other key types may be added in the future.</p>
+<p>If you plan to check a large number of keys we recommend that you
+use the <a href="https://github.com/badkeys/badkeys">badkeys software</a>.
+It provides a Python library and command line tool.</p>
