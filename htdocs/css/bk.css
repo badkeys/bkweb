@@ -1,0 +1,10 @@
+body{margin:0;}
+.right{float:right}
+.top{border-bottom:1px solid gray;background-color:lightgray}
+.top p{margin:0}
+.bottom{width:100%;border-bottom:1px solid gray}
+.key{height:30em}
+.keyout{height:150px;width:600px}
+.mono{font-family:monospace}
+.center{text-align:center}
+.small{font-size:0.5em}
