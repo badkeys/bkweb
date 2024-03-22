@@ -98,10 +98,14 @@ def gethtml(mykey):
                 myhtml += "<a href='/docs/publicprivate.html'>The private key is in one of our blocklists.</a>"
 
             if "lookup" in rr:
-                niceurl, rawurl = badkeys.allkeys.urllookup(
+                lookup = badkeys.allkeys.urllookup(
                     rr["blid"], rr["lookup"], type="both"
                 )
-                myhtml += printblkey(rawurl, niceurl)
+                if lookup:
+                    niceurl, rawurl = lookup
+                    myhtml += printblkey(rawurl, niceurl)
+                else:
+                    myhtml += "<br>It is a new key that is not in our URL lookup database yet."
 
         elif r == "sharedprimes":
             myhtml += "This RSA key has a <a href='/docs/commonprimes.html'>common prime factor</a> with another key.<br>This allows breaking the private key by calculating the GCD."
