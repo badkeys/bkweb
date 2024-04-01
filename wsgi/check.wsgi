@@ -21,6 +21,6 @@ def application(environ, start_response):
     try:
         inkey = d["inkey"][0]
     except KeyError:
-        return ["No input".encode()]
+        return [b"No input"]
     html = gethtml(inkey)
     return [html.encode()]
