@@ -1,5 +1,5 @@
-import textwrap
 import re
+import textwrap
 import urllib.request
 
 import badkeys
