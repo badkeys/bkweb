@@ -180,6 +180,6 @@ def gethtml(mykey):
         myhtml += "<tr><td>SPKI&nbsp;SHA256<br><span class='small'>"
         myhtml += f"(<a href='https://crt.sh?spkisha256={ret['spkisha256']}'>search on crt.sh</a>)"
         myhtml += f"</span></td><td>{ret['spkisha256']}</td></tr>"
-    myhtml += "</table>"
+    myhtml += "</table></div></div>"
 
     return myhtml
