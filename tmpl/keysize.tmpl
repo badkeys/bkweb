@@ -16,4 +16,16 @@ may <a href="https://mailarchive.ietf.org/arch/msg/tls/GNZrg_LnBMx2mKuOniwDTFdoI
 as implementations may not have been tested with
 such keys.
 The majority of implementations default to key size choices that are multiples of 1024.
-It is recommended to use a common key size like 2048, 3072 or 4096 bit.</p>
+It is recommended to use a common key size like 2048, 3072, or 4096 bit.</p>
+
+<p><a href="https://community.letsencrypt.org/t/issuing-for-common-rsa-key-sizes-only/133839">Let's Encrypt restricts RSA key sizes to those common values</a>,
+
+
+<p>Links:</p>
+
+<ul><li><a href="https://community.letsencrypt.org/t/issuing-for-common-rsa-key-sizes-only/133839">Let's Encrypt
+announced restricting key sizes to 2048, 3072, or 4096 bit</a>,
+as it is otherwise impractical to check for presence of the Debian OpenSSL bug.</p>
+<li><a href="https://cado-nfs.gitlabpages.inria.fr/">CADO-NFS</a> is an open source implementation
+of the number field sieve, currently the best algorithm to attack RSA keys with small key sizes.</li>
+</ul>
