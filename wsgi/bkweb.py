@@ -66,9 +66,12 @@ def gethtml(mykey):
 
         myhtml += "This key is broken!<br>"
         if r == "fermat":
-            myhtml += "<a href='/docs/fermat.html'>"
-            myhtml += "Fermat Attack (CVE-2022-26320)"
-            myhtml += "</a>"
+            if "subtest" in rr and rr["subtest"] == "square":
+                myhtml += 'This is a "square" RSA key (broken)'
+            else:
+                myhtml += "<a href='/docs/fermat.html'>"
+                myhtml += "Fermat Attack (CVE-2022-26320)"
+                myhtml += "</a>"
         elif r == "roca":
             myhtml += "<a href='/docs/roca.html'>Return of Coopersmith's Attack / ROCA (CVE-2017-15361)</a>"
         elif r == "blocklist":
@@ -123,7 +126,8 @@ def gethtml(mykey):
                 privkey = rsatool.RSA(p=res["p"], q=res["q"]).to_pem().decode()
                 myhtml += "<p class='center'>We can calculate the private key:<br>"
                 myhtml += f"<textarea disabled='disabled' class='keyout'>{privkey}</textarea></p>"
-            except AssertionError:
+            except (AssertionError, ZeroDivisionError):
+                # ZeroDivisionError happens with "square" RSA keys
                 pass
 
         myhtml += "</p></div>"
