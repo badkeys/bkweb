@@ -2,16 +2,24 @@
 set -euo pipefail
 
 HT=../htdocs/
+HOST="badkeys.info"
 
 [ -d $HT/docs ] || mkdir -p $HT/docs
 
-cat top.tmpl index.tmpl bottom.tmpl | sed -e 's:_PRE_::g' >$HT/index.html
+cat top.tmpl index.tmpl bottom.tmpl |
+	sed -e 's:_PRE_::g' \
+		-e 's!</head>!<link rel="canonical" href="https://'$HOST'/">!g' \
+		>$HT/index.html
+exit 1
 cat top.tmpl about.tmpl bottom.tmpl | grep -v '<meta' | sed -e 's:_PRE_:About - :g' >$HT/about.html
 
 for x in commonprimes debian dsa fermat keypair publicprivate roca exponent keysize; do
 	echo page $x
 	title=$(grep '<h3>' $x.tmpl | sed -e 's:<h3>::g' -e 's:</h3>::g')
-	cat top.tmpl $x.tmpl | grep -v '<script' | grep -v '<meta' | sed -e "s:_PRE_:$title - :g" >$HT/docs/$x.html
+	cat top.tmpl $x.tmpl | grep -v '<script' | grep -v '<meta' |
+		sed -e "s:_PRE_:$title - :g" \
+			-e 's!</head>!<link rel="canonical" href="https://'$HOST'/docs/'$x'.html">!g' \
+			>$HT/docs/$x.html
 	echo "</div></div>" >>$HT/docs/$x.html
 done
 
