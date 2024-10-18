@@ -10,7 +10,6 @@ cat top.tmpl index.tmpl bottom.tmpl |
 	sed -e 's:_PRE_::g' \
 		-e 's!</head>!<link rel="canonical" href="https://'$HOST'/">!g' \
 		>$HT/index.html
-exit 1
 cat top.tmpl about.tmpl bottom.tmpl | grep -v '<meta' | sed -e 's:_PRE_:About - :g' >$HT/about.html
 
 for x in commonprimes debian dsa fermat keypair publicprivate roca exponent keysize; do
