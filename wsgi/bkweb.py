@@ -137,7 +137,7 @@ def gethtml(mykey):
             warningmsgs += "<a href='/docs/keysize.html'>RSA keys smaller than 2048 bits are considered insecure.</a><br>"
         if (ret["bits"] % 8) != 0:
             warningmsgs += "<a href='/docs/keysize.html'>This RSA key has a very unusual key size that is not a multiple of 8.<br>This can cause compatibility issues.</a><br>"
-        elif not ret["bits"] in [512, 768, 1024, 2048, 3072, 4096, 8192]:
+        elif ret["bits"] not in [512, 768, 1024, 2048, 3072, 4096, 8192]:
             warningmsgs += "<a href='/docs/keysize.html'>This RSA key has an unusual key size.</a><br>"
         if ret["e"] == 3:
             warningmsgs += "<a href='/docs/exponent.html'>RSA exponent 3 is discouraged, it enables some attacks.</a><br>"
