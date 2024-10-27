@@ -6,7 +6,7 @@ import badkeys
 import rsatool
 
 
-def printblkey(rawurl, niceurl, binary=False):
+def printblkey(rawurl, niceurl):
     xhtml = ""
     try:
         keystring = urllib.request.urlopen(rawurl).read().decode()
@@ -52,10 +52,10 @@ def gethtml(mykey):
     if ret["type"] == "unknown":
         myhtml += "Unsupported key type"
         return myhtml
-    elif ret["type"] == "notfound":
+    if ret["type"] == "notfound":
         myhtml += "No key found"
         return myhtml
-    elif ret["type"] == "unparseable":
+    if ret["type"] == "unparseable":
         myhtml += "Unparseable key"
         return myhtml
 
