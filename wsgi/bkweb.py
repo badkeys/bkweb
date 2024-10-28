@@ -4,6 +4,7 @@ import urllib.request
 
 import badkeys
 import rsatool
+from msgs import msgs
 
 
 def printblkey(rawurl, niceurl):
@@ -65,40 +66,18 @@ def gethtml(mykey):
         myhtml += "<img src='/img/block.svg' alt='broken' width='50'><br>"
 
         myhtml += "This key is broken!<br>"
-        if r == "fermat":
-            if "subtest" in rr and rr["subtest"] == "square":
-                myhtml += 'This is a "square" RSA key (broken)'
-            else:
-                myhtml += "<a href='/docs/fermat.html'>"
-                myhtml += "Fermat Attack (CVE-2022-26320)"
-                myhtml += "</a>"
-        elif r == "roca":
-            myhtml += "<a href='/docs/roca.html'>Return of Coopersmith's Attack / ROCA (CVE-2017-15361)</a>"
-        elif r == "blocklist":
-            if rr["subtest"] == "debianssl":
-                myhtml += (
-                    "<a href='/docs/debian.html'>Debian OpenSSL bug (CVE-2008-0166)</a>"
-                )
-            elif rr["subtest"] == "keypair":
-                myhtml += "<a href='/docs/keypair.html'>keypair/Gitkraken bug (CVE-2021-41117)</a>"
-            elif rr["subtest"] == "documentation":
-                myhtml += "<a href='/docs/publicprivate.html'>The private key is used in documentation as an example.</a>"
-            elif rr["subtest"] == "firmware":
-                myhtml += "<a href='/docs/publicprivate.html'>The private key is a static key from a device firmware.</a>"
-            elif rr["subtest"] == "localhostcert":
-                myhtml += "<a href='/docs/publicprivate.html'>The private key was used for a localhost certificate.</a>"
-            elif rr["subtest"] == "localroot":
-                myhtml += "<a href='/docs/publicprivate.html'>The private key is a static key installed by a software root certificate.</a>"
-            elif rr["subtest"] == "misc":
-                myhtml += '<a href="/docs/publicprivate.html">The private key can be found in the "Kompromat" repository.</a>'
-            elif rr["subtest"] == "rfc":
-                myhtml += "<a href='/docs/publicprivate.html'>The private key is part of an IETF RFC or draft document.</a>"
-            elif rr["subtest"] == "softwaretests":
-                myhtml += "<a href='/docs/publicprivate.html'>The private key is used in a software test suite.</a>"
-            elif rr["subtest"] == "testvectors":
-                myhtml += "<a href='/docs/publicprivate.html'>The private key is used as a test vector in a cryptographic test suite.</a>"
-            else:
-                myhtml += "<a href='/docs/publicprivate.html'>The private key is in one of our blocklists.</a>"
+
+        # use more specific subtest message is available, generic if not
+        if "subtest" in rr and rr["subtest"] in msgs:
+            myhtml += msgs[rr["subtest"]]
+        elif r in msgs:
+            myhtml += msgs[r]
+        elif r in msgs:
+            myhtml += msgs[r]
+        else:
+            myhtml += f"{r} vulnerability!"
+
+        if r == "blocklist":
 
             if "lookup" in rr:
                 lookup = badkeys.allkeys.urllookup(
@@ -110,15 +89,6 @@ def gethtml(mykey):
                 else:
                     myhtml += "<br>It is a new key that is not in our URL lookup database yet."
 
-        elif r == "sharedprimes":
-            myhtml += "This RSA key has a <a href='/docs/commonprimes.html'>common prime factor</a> with another key.<br>This allows breaking the private key by calculating the GCD."
-        elif r == "smallfactors":
-            myhtml += "This RSA key has small prime factors.<br>This is usually a sign of data corruption in the key."
-        elif r == "pattern":
-            myhtml += "The key contains an implausible repeating pattern that indicates non-random prime factors."
-
-        else:
-            myhtml += f"{r} vulnerability!"
 
         res = ret["results"][r]
         if "p" in res and "q" in res:
@@ -134,20 +104,18 @@ def gethtml(mykey):
 
     if ret["type"] == "rsa":
         if ret["bits"] < 2048:
-            warningmsgs += "<a href='/docs/keysize.html'>RSA keys smaller than 2048 bits are considered insecure.</a><br>"
+            warningmsgs += msgs["below2048"]
         if (ret["bits"] % 8) != 0:
-            warningmsgs += "<a href='/docs/keysize.html'>This RSA key has a very unusual key size that is not a multiple of 8.<br>This can cause compatibility issues.</a><br>"
+            warningmsgs += msgs["not8x"]
         elif ret["bits"] not in [512, 768, 1024, 2048, 3072, 4096, 8192]:
-            warningmsgs += "<a href='/docs/keysize.html'>This RSA key has an unusual key size.</a><br>"
+            warningmsgs += msgs["unusualsize"]
         if ret["e"] == 3:
-            warningmsgs += "<a href='/docs/exponent.html'>RSA exponent 3 is discouraged, it enables some attacks.</a><br>"
+            warningmsgs += msgs["exponent3"]
         elif ret["e"] != 65537:
-            warningmsgs += "<a href='/docs/exponent.html'>RSA exponent is not the recommended default value (e = 65537).</a><br>"
+            warningmsgs += msgs["enot65537"]
 
     if ret["type"] == "dsa":
-        warningmsgs += (
-            "<a href='/docs/dsa.html'>DSA keys are not recommended any more.</a>"
-        )
+        warningmsgs += "dsa"
 
     if warningmsgs != "":
         myhtml += "<div class='container'>"
