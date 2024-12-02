@@ -89,7 +89,6 @@ def gethtml(mykey):
                 else:
                     myhtml += "<br>It is a new key that is not in our URL lookup database yet."
 
-
         res = ret["results"][r]
         if "p" in res and "q" in res:
             try:
