@@ -81,7 +81,7 @@ def gethtml(mykey):
 
             if "lookup" in rr:
                 lookup = badkeys.allkeys.urllookup(
-                    rr["blid"], rr["lookup"], type="both"
+                    rr["blid"], rr["lookup"]
                 )
                 if lookup:
                     niceurl, rawurl = lookup
