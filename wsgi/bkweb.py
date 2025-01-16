@@ -80,11 +80,10 @@ def gethtml(mykey):
         if r == "blocklist":
 
             if "lookup" in rr:
-                lookup = badkeys.allkeys.urllookup(
+                niceurl, rawurl = badkeys.allkeys.urllookup(
                     rr["blid"], rr["lookup"]
                 )
-                if lookup:
-                    niceurl, rawurl = lookup
+                if niceurl:
                     myhtml += printblkey(rawurl, niceurl)
                 else:
                     myhtml += "<br>It is a new key that is not in our URL lookup database yet."
