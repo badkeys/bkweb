@@ -65,7 +65,7 @@ def gethtml(mykey):
         myhtml += "<p class='center'>"
         myhtml += "<img src='/img/block.svg' alt='broken' width='50'><br>"
 
-        myhtml += "This key is broken!<br>"
+        myhtml += "This key is insecure!<br>"
 
         # use more specific subtest message is available, generic if not
         if "subtest" in rr and rr["subtest"] in msgs:

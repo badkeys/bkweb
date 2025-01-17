@@ -1,6 +1,6 @@
 msgs = {
     "fermat": "<a href='/docs/fermat.html'>Fermat Attack (CVE-2022-26320)</a>",
-    "square": 'This is a "square" RSA key (broken)',
+    "square": 'This is a "square" RSA key (defect)',
     "roca": "<a href='/docs/roca.html'>Return of Coopersmith's Attack / ROCA (CVE-2017-15361)</a>",
     "sharedprimes": (
         "This RSA key has a <a href='/docs/commonprimes.html'>common prime factor</a> with another"
