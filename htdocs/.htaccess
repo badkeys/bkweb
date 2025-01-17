@@ -1,3 +1,10 @@
 header always set "X-Frame-Options" "DENY"
 header always set "X-Content-Type-Options" "nosniff"
 header always set "Content-Security-Policy" "default-src 'none';script-src 'self';style-src 'self';img-src 'self';upgrade-insecure-requests;frame-ancestors 'none';base-uri 'self';form-action 'self'"
+
+# longer caching time for images, css, js
+<filesMatch ".(ico|jpg|css|js|avif|svg|png|webp)$">
+    # one year (31536000), remove immutable for now
+    #Header set Cache-Control "max-age=31536000, immutable"
+    Header set Cache-Control "max-age=31536000"
+</filesMatch>
