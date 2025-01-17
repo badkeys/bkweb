@@ -1,4 +1,4 @@
-body{margin:0;}
+body{margin:0;color:black}
 .right{float:right}
 .top{border-bottom:1px solid gray;background-color:lightgray}
 .top p{margin:0}
@@ -8,3 +8,4 @@ body{margin:0;}
 .mono{font-family:monospace}
 .center{text-align:center}
 .small{font-size:0.5em}
+a{font-weight:bold}
