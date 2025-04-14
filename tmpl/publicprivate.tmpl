@@ -14,8 +14,12 @@ and the <a href="https://github.com/sec-consult/houseofkeys">House of Keys</a>.<
 <p>No matter why a private key is public, it is obvious that a "public private key"
 should be considered as insecure and compromised.</p>
 
-<p>The "Kompromat" repository collects "private keys that have become public". We
+<p>The <a href="https://github.com/SecurityFail/kompromat">Kompromat repository</a> collects "private keys that have become public". We
 use this as the basis of our blocklist.</p>
 
-<ul><li><a href="https://github.com/SecurityFail/kompromat">Kompromat repository</a></li>
+<p>Some relevant CVEs detected by badkeys:</p>
+
 <ul>
+<li>CVE-2025-32754 (jenkins/ssh-agent Docker image hardcoded ssh host keys)</li>
+<li>CVE-2025-32755 ((jenkins/ssh-slave Docker image hardcoded ssh host keys)</li>
+</ul>
