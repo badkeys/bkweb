@@ -12,7 +12,7 @@ cat top.tmpl index.tmpl bottom.tmpl |
 		>$HT/index.html
 cat top.tmpl about.tmpl bottom.tmpl | grep -v '<meta' | sed -e 's:_PRE_:About - :g' >$HT/about.html
 
-for x in commonprimes debian dsa fermat keypair publicprivate roca exponent keysize; do
+for x in commonprimes debian dsa fermat keypair publicprivate roca exponent keysize forti; do
 	echo page $x
 	title=$(grep '<h3>' $x.tmpl | sed -e 's:<h3>::g' -e 's:</h3>::g')
 	cat top.tmpl $x.tmpl | grep -v '<script' | grep -v '<meta' |
