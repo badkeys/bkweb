@@ -6,19 +6,26 @@ import badkeys
 import rsatool
 from msgs import msgs
 
+regt = (b"-----BEGIN[A-Z ]{0,5} PRIVATE KEY-----[0-9A-Za-z/+=\n]{1,10000}?"
+        b"-----END[A-Z ]{0,5} PRIVATE KEY-----")
+kreg = re.compile(regt, flags=re.MULTILINE | re.DOTALL)
+
 
 def printblkey(rawurl, niceurl):
-    xhtml = ""
     try:
-        keystring = urllib.request.urlopen(rawurl).read().decode()
-        # do some validation to prevent XSS via the key repos
-        if re.fullmatch(r"^[A-Za-z0-9/+= \n-]*$", keystring, re.MULTILINE):
-            xhtml += "<br>The private key is:<br>"
-            xhtml += (
-                f"<textarea disabled='disabled' class='keyout'>{keystring}</textarea>"
-            )
+        keydata = urllib.request.urlopen(rawurl).read(10000)
+        k = kreg.search(keydata)
+        if k:
+            key = k[0].decode()
+            xhtml = "<br>The private key is:<br>"
+            xhtml += f"<textarea disabled='disabled' class='keyout'>{key}</textarea>"
+        else:
+            xhtml = "<br>We tried to get the private key, but an error occured.<br>"
+            xhtml += f"Private key not found in {rawurl}<br>"
     except urllib.error.HTTPError:
-        xhtml += "<br>We tried to get the private key, but an error occured.<br>"
+        xhtml = "<br>We tried to get the private key, but an error occured.<br>"
+        xhtml += f"HTTP error with {rawurl}<br>"
+
     xhtml += f"<br>You can find the <a href='{niceurl}'>private key here</a>."
     return xhtml
 
