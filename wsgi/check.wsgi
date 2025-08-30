@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 import urllib.parse
 
 from bkweb import gethtml

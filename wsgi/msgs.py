@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 msgs = {
     "forti": "<a href='/docs/forti.html'>Fortigate leak (CVE-2022-40684)</a>",
     "fermat": "<a href='/docs/fermat.html'>Fermat Attack (CVE-2022-26320)</a>",
