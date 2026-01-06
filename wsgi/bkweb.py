@@ -4,9 +4,9 @@ import re
 import textwrap
 import urllib.request
 
-import badkeys
-import rsatool
 from msgs import msgs
+
+import badkeys
 
 regt = (b"-----BEGIN[A-Z ]{0,5} PRIVATE KEY-----[0-9A-Za-z/+=\n]{1,10000}?"
         b"-----END[A-Z ]{0,5} PRIVATE KEY-----")
@@ -55,7 +55,7 @@ def gethtml(mykey):
 <p>Checking cryptographic public keys for known vulnerabilities</p>
 </div></div><div><br><div class="container">"""
 
-    ret = badkeys.detectandcheck(mykey)
+    ret = badkeys.detectandcheck(mykey, keyrecover=True)
 
     myhtml = htmltop
 
@@ -98,14 +98,10 @@ def gethtml(mykey):
                     myhtml += "<br>It is a new key that is not in our URL lookup database yet."
 
         res = ret["results"][r]
-        if "p" in res and "q" in res:
-            try:
-                privkey = rsatool.RSA(p=res["p"], q=res["q"]).to_pem().decode()
-                myhtml += "<p class='center'>We can calculate the private key:<br>"
-                myhtml += f"<textarea disabled='disabled' class='keyout'>{privkey}</textarea></p>"
-            except (AssertionError, ZeroDivisionError):
-                # ZeroDivisionError happens with "square" RSA keys
-                pass
+        if "privatekey" in res:
+            myhtml += ("<p class='center'>We can calculate the private key:<br>"
+                       "<textarea disabled='disabled' class='keyout'>"
+                       f"{res['privatekey']}</textarea></p>")
 
         myhtml += "</p></div>"
 
