@@ -1,0 +1,14 @@
+<h3>Small private Exponent <em>d</em> / Wiener's Attack</h3>
+
+<p>The private key exponent <em>d</em> of an RSA key is usually a large value, while the public exponent
+<em>e</em> can be set to a small value (default: <em>e=65537</em>).</p>
+
+<p>Keys where the private exponent <em>d</em> is small compared to the key length can be broken
+with Wiener's Attack.
+A special case of such vulnerable keys is when the public and private exponent are confused (e.g., 
+<em>d=65537</em>).
+
+<ul><li><a href="https://web.archive.org/web/20130730130908/https://www.cits.ruhr-uni-bochum.de/imperia/md/content/may/krypto2ss08/shortsecretexponents.pdf">Cryptanalysis of Short RSA Secret Exponents (Michael J. Wiener, 1989)</a></li>
+<li><a href="https://github.com/orisano/owiener">oWiener - Python implementation of the Wiener attack</a>
+(this code has been used to implement the check in badkeys)</li>
+</ul>

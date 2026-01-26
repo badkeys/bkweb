@@ -12,6 +12,7 @@ msgs = {
     "smallfactors": (
         "This RSA key has small prime factors. This is usually an indication of data corruption."
     ),
+    "smalld": "<a href='/docs/smalld.html'>Small private exponent <em>d</em> / Wiener's Attack</a>",
     "debianssl": "<a href='/docs/debian.html'>Debian OpenSSL bug (CVE-2008-0166)</a>",
     "keypair": "<a href='/docs/keypair.html'>keypair/Gitkraken bug (CVE-2021-41117)</a>",
     "documentation": (
