@@ -8,7 +8,7 @@ HOST="badkeys.info"
 
 cat top.tmpl index.tmpl bottom.tmpl |
 	sed -e 's:_PRE_::g' \
-		-e 's!</head>!<link rel="canonical" href="https://'$HOST'/">!g' \
+		-e 's!</head>!<link rel="canonical" href="https://'$HOST'/"></head>!g' \
 		>$HT/index.html
 cat top.tmpl about.tmpl bottom.tmpl | grep -v '<meta' | sed -e 's:_PRE_:About - :g' >$HT/about.html
 
@@ -17,7 +17,7 @@ for x in commonprimes debian dsa fermat keypair publicprivate roca smalld expone
 	title=$(grep '<h3>' $x.tmpl | sed -e 's:<h3>::g' -e 's:</h3>::g')
 	cat top.tmpl $x.tmpl | grep -v '<script' | grep -v '<meta' |
 		sed -e "s:_PRE_:$title - :g" \
-			-e 's!</head>!<link rel="canonical" href="https://'$HOST'/docs/'$x'.html">!g' \
+			-e 's!</head>!<link rel="canonical" href="https://'$HOST'/docs/'$x'.html"></head>!g' \
 			>$HT/docs/$x.html
 	echo "</div></div>" >>$HT/docs/$x.html
 done
