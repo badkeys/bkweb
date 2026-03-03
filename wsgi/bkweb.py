@@ -43,7 +43,7 @@ def fancyhex(i):
 
 def gethtml(mykey):
     warningmsgs = ""
-    htmltop = """<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+    htmltop = """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <title>Results - badkeys.info</title>
 <link rel="stylesheet" href="/css/milligreen.min.css">
 <link rel="stylesheet" href="/css/bk.css">
