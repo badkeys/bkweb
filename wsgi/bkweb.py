@@ -47,6 +47,7 @@ def gethtml(mykey):
 <title>Results - badkeys.info</title>
 <link rel="stylesheet" href="/css/milligreen.min.css">
 <link rel="stylesheet" href="/css/bk.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 </head><body>
 <div class='navbar top'>
 <div class="container"><div class="right">
