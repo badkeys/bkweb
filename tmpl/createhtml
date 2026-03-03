@@ -22,4 +22,6 @@ for x in commonprimes debian dsa fermat keypair publicprivate roca smalld expone
 	echo "</div></div>" >>$HT/docs/$x.html
 done
 
+cat "$HT/css/milligreen.min.css" "$HT/css/bk.css" | cssmin > "$HT/css/all.css"
+
 echo "All done"
