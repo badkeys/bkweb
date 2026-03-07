@@ -14,12 +14,12 @@ cat top.tmpl about.tmpl bottom.tmpl | grep -v '<meta property' | sed -e 's:_PRE_
 
 for x in commonprimes debian dsa fermat keypair publicprivate roca smalld exponent keysize forti; do
 	echo page $x
-	title=$(grep '<h3>' $x.tmpl | sed -e 's:<h3>::g' -e 's:</h3>::g')
+	title=$(grep '<h2>' $x.tmpl | sed -e 's:<h2>::g' -e 's:</h2>::g')
 	cat top.tmpl $x.tmpl | grep -v '<script' | grep -v '<meta property' |
 		sed -e "s:_PRE_:$title - :g" \
 			-e 's!</head>!<link rel="canonical" href="https://'$HOST'/docs/'$x'.html"></head>!g' \
 			>$HT/docs/$x.html
-	echo "</div></div>" >>$HT/docs/$x.html
+	echo "</main></body></html>" >>$HT/docs/$x.html
 done
 
 cat "$HT/css/milligreen.min.css" "$HT/css/bk.css" | cssmin | \
