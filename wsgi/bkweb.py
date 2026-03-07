@@ -49,12 +49,17 @@ def gethtml(mykey):
 <link rel="icon" href="/img/key.svg">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 </head><body>
-<div class='navbar top'>
-<div class="container"><div class="right">
-<a href="/">Home</a> <a href="/about.html">About</a>
-</div><h3><a href="/">badkeys.info</a></h3>
+<header class='navbar top'>
+<div class='container'>
+<nav class="right">
+<a href="/">Home</a>
+<a href="/about.html">About</a>
+</nav>
+<h1><a href="/">badkeys</a></h1>
 <p>Checking cryptographic public keys for known vulnerabilities</p>
-</div></div><div><br><div class="container">"""
+</div>
+</header><br><main class="container">
+"""
 
     ret = badkeys.detectandcheck(mykey, keyrecover=True)
 
@@ -156,6 +161,8 @@ def gethtml(mykey):
         myhtml += "<tr><td>SPKI&nbsp;SHA256<br><span class='small'>"
         myhtml += f"(<a href='https://crt.sh?spkisha256={ret['spkisha256']}'>search on crt.sh</a>)"
         myhtml += f"</span></td><td>{ret['spkisha256']}</td></tr>"
-    myhtml += "</table></div></div>"
+    myhtml += "</table>"
+
+    myhtml += "</main></body></html>"
 
     return myhtml
