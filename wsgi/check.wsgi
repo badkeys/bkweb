@@ -3,6 +3,7 @@
 import urllib.parse
 
 from bkweb import gethtml
+from submitkey import submitkey
 
 
 def application(environ, start_response):
@@ -20,9 +21,12 @@ def application(environ, start_response):
     )
     request_body = environ["wsgi.input"].read()
     d = urllib.parse.parse_qs(request_body.decode())
-    try:
-        inkey = d["inkey"][0]
-    except KeyError:
-        return [b"No input"]
-    html = gethtml(inkey)
+    if "type" in d and d["type"][0] == "submitkey":
+        html = submitkey(d)
+    else:
+        try:
+            inkey = d["inkey"][0]
+        except KeyError:
+            return [b"No input"]
+        html = gethtml(inkey)
     return [html.encode()]

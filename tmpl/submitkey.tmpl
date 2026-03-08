@@ -1,0 +1,17 @@
+<h2>Submit a Private Key</h2>
+<p>Among other tests,
+badkeys checks keys against a list of known-compromised private keys.
+You can find an <a href="https://github.com/badkeys/blocklistmaker">overview of the used key collections here</a>.</p>
+<p>If you want to suggest a key that should be added, you can do so here.
+Note that all submitted private keys may be shared publicly.</p>
+<form action="/check/" method="POST">
+<input type="hidden" name="type" value="submitkey">
+<label for="submitkey">Enter private key:</label>
+<textarea name="submitkey" rows="50" cols="50" id="submitkey" class="key"></textarea>
+<label for="keydesc">Where is this key from? Please share any URLs,
+relevant background information, and, optionally, contact
+information:</label>
+<textarea name="keydesc" rows="50" cols="50" id="keydesc" class="key"></textarea>
+<br>
+<input type="submit" value="Submit">
+</form>

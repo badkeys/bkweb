@@ -4,9 +4,27 @@ import re
 import textwrap
 import urllib.request
 
+import badkeys
 from msgs import msgs
 
-import badkeys
+htmltop = """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>Results - badkeys.info</title>
+<link rel="stylesheet" href="/css/all.css">
+<link rel="icon" href="/img/key.svg">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head><body>
+<header class='navbar top'>
+<div class='container'>
+<nav class="right">
+<a href="/">Home</a>
+<a href="/about.html">About</a>
+</nav>
+<h1><a href="/">badkeys</a></h1>
+<p>Checking cryptographic public keys for known vulnerabilities</p>
+</div>
+</header><br><main class="container">
+"""
+htmlbottom = "</main></body></html>"
 
 regt = (b"-----BEGIN[A-Z ]{0,5} PRIVATE KEY-----[0-9A-Za-z/+=\n]{1,10000}?"
         b"-----END[A-Z ]{0,5} PRIVATE KEY-----")
@@ -43,23 +61,6 @@ def fancyhex(i):
 
 def gethtml(mykey):
     warningmsgs = ""
-    htmltop = """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<title>Results - badkeys.info</title>
-<link rel="stylesheet" href="/css/all.css">
-<link rel="icon" href="/img/key.svg">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-</head><body>
-<header class='navbar top'>
-<div class='container'>
-<nav class="right">
-<a href="/">Home</a>
-<a href="/about.html">About</a>
-</nav>
-<h1><a href="/">badkeys</a></h1>
-<p>Checking cryptographic public keys for known vulnerabilities</p>
-</div>
-</header><br><main class="container">
-"""
 
     ret = badkeys.detectandcheck(mykey, keyrecover=True)
 
@@ -163,6 +164,6 @@ def gethtml(mykey):
         myhtml += f"</span></td><td>{ret['spkisha256']}</td></tr>"
     myhtml += "</table>"
 
-    myhtml += "</main></body></html>"
+    myhtml += htmlbottom
 
     return myhtml

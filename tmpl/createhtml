@@ -11,6 +11,7 @@ cat top.tmpl index.tmpl bottom.tmpl |
 		-e 's!</head>!<link rel="canonical" href="https://'$HOST'/"></head>!g' \
 		>$HT/index.html
 cat top.tmpl about.tmpl bottom.tmpl | grep -v '<meta property' | sed -e 's:_PRE_:About - :g' >$HT/about.html
+cat top.tmpl submitkey.tmpl bottom.tmpl | grep -v '<meta property' | sed -e 's:_PRE_:Submit Private Key - :g' >$HT/submitkey.html
 
 for x in commonprimes debian dsa fermat keypair publicprivate roca smalld exponent keysize forti; do
 	echo page $x
