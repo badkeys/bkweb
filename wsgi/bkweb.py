@@ -17,7 +17,7 @@ def htmltop():
     html = pathlib.Path(htmltopfile).read_text()
     html = re.sub(r"<script src=.*></script>\n", "", html)
     html = re.sub(r"<meta property=.*>\n", "", html)
-    return html.replace("_PRE_", "Results")
+    return html.replace("_PRE_", "Results - ")
 
 
 htmlbottom = "</main></body></html>"
