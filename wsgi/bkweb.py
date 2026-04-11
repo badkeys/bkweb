@@ -1,5 +1,8 @@
 # SPDX-License-Identifier: MIT
 
+import functools
+import os
+import pathlib
 import re
 import textwrap
 import urllib.request
@@ -7,23 +10,16 @@ import urllib.request
 import badkeys
 from msgs import msgs
 
-htmltop = """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<title>Results - badkeys.info</title>
-<link rel="stylesheet" href="/css/all.css">
-<link rel="icon" href="/img/key.svg">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-</head><body>
-<header class='navbar top'>
-<div class='container'>
-<nav class="right">
-<a href="/">Home</a>
-<a href="/about.html">About</a>
-</nav>
-<h1><a href="/">badkeys</a></h1>
-<p>Checking cryptographic public keys for known vulnerabilities</p>
-</div>
-</header><br><main class="container">
-"""
+
+@functools.cache
+def htmltop():
+    htmltopfile = os.path.join(os.path.realpath(os.path.dirname(__file__)), "../tmpl/top.tmpl")
+    html = pathlib.Path(htmltopfile).read_text()
+    html = re.sub(r"<script src=.*></script>\n", "", html)
+    html = re.sub(r"<meta property=.*>\n", "", html)
+    return html.replace("_PRE_", "Results")
+
+
 htmlbottom = "</main></body></html>"
 
 regt = (b"-----BEGIN[A-Z ]{0,5} PRIVATE KEY-----[0-9A-Za-z/+=\n]{1,10000}?"
@@ -64,7 +60,7 @@ def gethtml(mykey):
 
     ret = badkeys.detectandcheck(mykey, keyrecover=True)
 
-    myhtml = htmltop
+    myhtml = htmltop()
 
     if ret["type"] == "unknown":
         myhtml += "Unsupported key type"
