@@ -102,9 +102,9 @@ def gethtml(mykey):
 
         res = ret["results"][r]
         if "privatekey" in res:
-            myhtml += ("<p class='center'>We can calculate the private key:<br>"
+            myhtml += ("</p><p class='center'>We can calculate the private key:<br>"
                        "<textarea disabled='disabled' class='keyout'>"
-                       f"{res['privatekey']}</textarea></p>")
+                       f"{res['privatekey']}</textarea>")
 
         myhtml += "</p></div>"
 
