@@ -4,6 +4,11 @@ badkeys checks keys against a list of known-compromised private keys.
 You can find an <a href="https://github.com/badkeys/blocklistmaker">overview of the used key collections here</a>.</p>
 <p>If you want to suggest a key that should be added, you can do so here.
 Note that all submitted private keys may be shared publicly.</p>
+<p>If you want to suggest a key that should be added, you can do so here.
+Note that all submitted private keys may be shared publicly.</p>
+<p>Private keys can be submitted in standard PEM format (starting with
+<em>-----BEGIN PRIVATE KEY-----</em). Keys in other, more unusual formats
+(e.g., private DNSSEC keys) are also acceptable.</p>
 <form action="/check/" method="POST">
 <input type="hidden" name="type" value="submitkey">
 <label for="submitkey">Enter private key:</label>
