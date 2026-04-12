@@ -55,6 +55,11 @@ def fancyhex(i):
     return f"<span class='mono'>{h}</span>"
 
 
+@functools.cache
+def getnoinput():
+    return htmltop() + msgs["noinput"] + htmlbottom
+
+
 def gethtml(mykey):
     warningmsgs = ""
 

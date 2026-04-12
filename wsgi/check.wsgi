@@ -2,7 +2,7 @@
 
 import urllib.parse
 
-from bkweb import gethtml
+from bkweb import gethtml, getnoinput
 from submitkey import submitkey
 
 
@@ -27,6 +27,6 @@ def application(environ, start_response):
         try:
             inkey = d["inkey"][0]
         except KeyError:
-            return [b"No input"]
+            return [getnoinput().encode()]
         html = gethtml(inkey)
     return [html.encode()]

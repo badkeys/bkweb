@@ -67,4 +67,9 @@ msgs = {
         " 65537).</a><br>"
     ),
     "dsa": "<a href='/docs/dsa.html'>DSA keys are not recommended any more.</a>",
+    "noinput": (
+        "<h2>Error: No Input</h2>"
+        "<p>You need to enter a cryptographic key in a supported format"
+        "(e.g., a PEM pubilc key starting with <em>-----BEGIN PUBLIC KEY-----</em>).</p>"
+    ),
 }
