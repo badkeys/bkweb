@@ -1,5 +1,7 @@
 body{margin:0;color:black}
 .right{float:right}
+.left{float:left}
+.clear{clear:both}
 .top{border-bottom:1px solid gray;background-color:lightgray}
 .top p{margin:0}
 .bottom{width:100%;border-bottom:1px solid gray}
