@@ -17,6 +17,7 @@ def htmltop():
     html = pathlib.Path(htmltopfile).read_text()
     html = re.sub(r"<script src=.*></script>\n", "", html)
     html = re.sub(r"<meta property=.*>\n", "", html)
+    html = html.replace("</head>", '<meta name="robots" content="noindex"></head>')
     return html.replace("_PRE_", "Results - ")
 
 
