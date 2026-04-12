@@ -19,4 +19,4 @@ def submitkey(d):
     fn = datetime.datetime.now(datetime.UTC).isoformat()
     ofp = os.path.join(outdir, fn)
     pathlib.Path(ofp).write_text(jdata)
-    return htmltop + htmlcontent + htmlbottom
+    return htmltop() + htmlcontent + htmlbottom
