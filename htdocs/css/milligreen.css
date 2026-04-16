@@ -61,14 +61,10 @@ input[type='submit'] {
   white-space: nowrap;
 }
 
-.button:focus, .button:hover,
-button:focus,
+.button:hover,
 button:hover,
-input[type='button']:focus,
 input[type='button']:hover,
-input[type='reset']:focus,
 input[type='reset']:hover,
-input[type='submit']:focus,
 input[type='submit']:hover {
   background-color: #606c76;
   border-color: #606c76;
