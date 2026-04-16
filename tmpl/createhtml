@@ -23,7 +23,7 @@ for x in commonprimes debian dsa fermat keypair publicprivate roca smalld expone
 	echo "</main></body></html>" >>$HT/docs/$x.html
 done
 
-cat "$HT/css/milligreen.min.css" "$HT/css/bk.css" | cssmin | \
+cat "$HT/css/milligreen.css" "$HT/css/bk.css" | cssmin | \
 	sed -e 's:calc(100%+2.0rem):calc(100% + 2.0rem):g' >"$HT/css/all.css"
 
 echo "All done"
