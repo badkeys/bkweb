@@ -135,7 +135,7 @@ def gethtml(mykey):
             warningmsgs += msgs["enot65537"]
 
     if ret["type"] == "dsa":
-        warningmsgs += "dsa"
+        warningmsgs += msgs["dsa"]
 
     if warningmsgs != "":
         myhtml += "<div class='container'>"
