@@ -1,0 +1,12 @@
+<h2>Vanity RSA Key</h2>
+
+<p>Due to the structure of an RSA key, it is possible to deliberately generate an RSA key that has a certain amount of
+user-controllable bytes. This can be used to create keys with some control over their base64 PEM encoding,
+and has been used to include ASCII art. Such keys are also known as "Vanity" RSA keys.</p>
+
+<p>badkeys contains a check for suspicious RSA ratios of 0 and 1 bytes. If such a pattern only exists in the upper half
+of the modulus, this is a strong indication of a Vanity RSA key. Note, however, that this detection is not entirely
+reliable.</p>
+
+<ul><li><a href="https://web.archive.org/web/20230305190629/https://ondergetekende.nl/vanity-rsa-public-key.html">Vanity RSA public key (blog post explaining the concept)</a></li>
+</ul>

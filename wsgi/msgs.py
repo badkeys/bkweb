@@ -5,6 +5,7 @@ msgs = {
     "fermat": "<a href='/docs/fermat.html'>Fermat Attack (CVE-2022-26320)</a>",
     "square": 'This is a "square" RSA key (defect)',
     "roca": "<a href='/docs/roca.html'>Return of Coopersmith's Attack / ROCA (CVE-2017-15361)</a>",
+    "rsapoly": "<a href='/docs/rsapoly.html'>Polynomial RSA Key</a>",
     "sharedprimes": (
         "This RSA key has a <a href='/docs/commonprimes.html'>common prime factor</a> with another"
         " key.<br>This allows breaking the private key by calculating the GCD."
@@ -49,6 +50,8 @@ msgs = {
     "blocklist": (
         "<a href='/docs/publicprivate.html'>The private key is in one of our blocklists.</a>"
     ),
+    "rsabias": "RSA key with suspicious bias, but we could not identify the cause.<br>",
+    "vanity": "This looks like a <a href='/docs/vanity.html'>Vanity RSA Key</a>.<br>",
     "below2048": (
         "<a href='/docs/keysize.html'>RSA keys smaller than 2048 bits are considered"
         " insecure.</a><br>"

@@ -1,0 +1,10 @@
+<h2>Polynomial RSA Key</h2>
+
+<p>If primes for an RSA private key are generated with a faulty random number generation logic that includes long
+zero-byte patterns, this leads to a key that can be represented as a polynomial. RSA's security relies on the difficulty
+of factoring integers. For polynomials, efficient factoring algorithms are known, which makes such keys easy to break.</p>
+
+<p>Such bugs can, for example, result from casting small random values to larger integer types.</p>
+
+<ul><li><a href="https://groups.google.com/a/mozilla.org/g/dev-security-policy/c/o2_vKIslDBc">Discussion about an affected WebPKI certificate on Mozilla's dev-sec-policy list</a></li>
+</ul>

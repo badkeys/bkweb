@@ -64,7 +64,9 @@ def getnoinput():
 def gethtml(mykey):
     warningmsgs = ""
 
-    ret = badkeys.detectandcheck(mykey, keyrecover=True)
+    checks = [*badkeys.defaultchecks.keys(), "rsabias"]
+
+    ret = badkeys.detectandcheck(mykey, checks=checks, keyrecover=True)
 
     myhtml = htmltop()
 
@@ -79,6 +81,12 @@ def gethtml(mykey):
         return myhtml
 
     for r, rr in ret["results"].items():
+        if r == "rsabias":
+            if "subtest" in rr and rr["subtest"] == "vanity":
+                warningmsgs += msgs["vanity"]
+            else:
+                warningmsgs += msgs["rsabias"]
+            continue
         myhtml += "<div class='container'>"
         myhtml += "<p class='center'>"
         myhtml += "<img src='/img/block.svg' alt='broken' width='50'><br>"
