@@ -161,8 +161,7 @@ def gethtml(mykey):
         myhtml += f"<tr><td>N</td><td>{fancyhex(ret['n'])}"
     elif ret["type"] == "ec":
         myhtml += "<table><tr><td>key type</td><td>Elliptic Curve</td></tr>"
-        if isinstance(ret["x"], int):
-            myhtml += f"<tr><td>x coordinate</td><td>{fancyhex(ret['x'])}"
+        myhtml += f"<tr><td>Public key</td><td>{fancyhex(ret['pub'])}"
     elif ret["type"] == "dsa":
         myhtml += "<table><tr><td>key type</td><td>DSA</td></tr>"
     else:
