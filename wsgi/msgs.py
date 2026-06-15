@@ -6,6 +6,9 @@ msgs = {
     "square": 'This is a "square" RSA key (defect)',
     "roca": "<a href='/docs/roca.html'>Return of Coopersmith's Attack / ROCA (CVE-2017-15361)</a>",
     "rsapoly": "<a href='/docs/rsapoly.html'>Polynomial RSA Key</a>",
+    "completeftp": "<a href='/docs/rsapoly.html'>Polynomial RSA Key (CompleteFTP variation)</a>",
+    "nautilus": "<a href='/docs/rsapoly.html'>Polynomial RSA Key (Nautilus variation)</a>",
+    "dsasparse": "<a href='/docs/dsasparse.html'>Sparse DSA Key (CompleteFTP)</a>",
     "sharedprimes": (
         "This RSA key has a <a href='/docs/commonprimes.html'>common prime factor</a> with another"
         " key.<br>This allows breaking the private key by calculating the GCD."
