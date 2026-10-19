@@ -127,7 +127,7 @@ def gethtml(mykey):
             warningmsgs += msgs["below2048"]
         if (ret["bits"] % 8) != 0:
             warningmsgs += msgs["not8x"]
-        elif ret["bits"] not in [512, 768, 1024, 2048, 3072, 4096, 8192]:
+        elif ret["bits"] not in {512, 768, 1024, 2048, 3072, 4096, 8192}:
             warningmsgs += msgs["unusualsize"]
         if ret["e"] == 3:
             warningmsgs += msgs["exponent3"]
