@@ -1,0 +1,13 @@
+<h2>Small Elliptic Curve Private Key (eMudhra incident)</h2>
+
+<p>In October 2026, it was discovered that multiple intermediate certificates
+used by the certificate authority eMudhra used private keys with very small
+private key values, the smallest one being <em>d=4</em>. All affected
+keys were byte-sized scalar values.</p>
+
+<p>badkeys detects the affected eMudhra keys and similar small elliptic curve
+private keys.</p>
+
+<ul>
+<li><a href="https://emudhra.we-have-a-problem.com/">eMudhra Intermediate CA Compromise</a></li>
+</ul>
