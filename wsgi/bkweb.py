@@ -13,15 +13,19 @@ from msgs import msgs
 
 @functools.cache
 def htmltop():
-    htmltopfile = os.path.join(os.path.realpath(os.path.dirname(__file__)), "../tmpl/top.tmpl")
-    html = pathlib.Path(htmltopfile).read_text()
-    html = re.sub(r"<script src=.*></script>\n", "", html)
-    html = re.sub(r"<meta property=.*>\n", "", html)
-    html = html.replace("</head>", '<meta name="robots" content="noindex"></head>')
-    return html.replace("_PRE_", "Results - ")
+    htmlfile = os.path.join(os.path.realpath(os.path.dirname(__file__)), "fragments/_top.html")
+    if os.path.exists(htmlfile):
+        return pathlib.Path(htmlfile).read_text()
+    return "<!DOCTYPE html><html><head><title>Results</title></head><body>"
 
 
-htmlbottom = "</main></body></html>"
+@functools.cache
+def htmlbottom():
+    htmlfile = os.path.join(os.path.realpath(os.path.dirname(__file__)), "fragments/_bottom.html")
+    if os.path.exists(htmlfile):
+        return pathlib.Path(htmlfile).read_text()
+    return "</body></html>"
+
 
 regt = (b"-----BEGIN[A-Z ]{0,5} PRIVATE KEY-----[0-9A-Za-z/+=\n]{1,10000}?"
         b"-----END[A-Z ]{0,5} PRIVATE KEY-----")
@@ -58,7 +62,7 @@ def fancyhex(i):
 
 @functools.cache
 def getnoinput():
-    return htmltop() + msgs["noinput"] + htmlbottom
+    return htmltop() + msgs["noinput"] + htmlbottom()
 
 
 def gethtml(mykey):
@@ -176,6 +180,6 @@ def gethtml(mykey):
         myhtml += f"</span></td><td>{ret['spkisha256']}</td></tr>"
     myhtml += "</table>"
 
-    myhtml += htmlbottom
+    myhtml += htmlbottom()
 
     return myhtml
