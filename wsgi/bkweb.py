@@ -149,11 +149,18 @@ def gethtml(mykey):
         myhtml += warningmsgs
         myhtml += "</p></div>"
 
-    if not ret["results"] and warningmsgs == "":
+    if not ret["results"] and warningmsgs == "" and ret["type"] != "unsupported":
         myhtml += "<p class='center'>"
         myhtml += "<img src='/img/ok.svg' alt='OK' width='50'><br>"
         myhtml += "This key is not affected by any of the vulnerabilities that we can detect!<br>"
         myhtml += "</p>"
+
+    if ret["type"] == "unsupported":
+        myhtml += "<div class='container'>"
+        myhtml += "<p class='center'>"
+        myhtml += "<img src='/img/warning.svg' alt='warning' width='50'><br>"
+        myhtml += "This is an unsupported key type.<br>"
+        myhtml += "</p></div>"
 
     if ret["type"] == "rsa":
         myhtml += "<table><tr><td>key type</td><td>RSA</td></tr>"
